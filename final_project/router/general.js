@@ -68,4 +68,42 @@ public_users.get('/review/:isbn', function (req, res) {
   return res.status(404).json({ message: 'Book not found' });
 });
 
+const axios = require('axios');
+
+const getBooks = async () => {
+    try {
+        const response = await axios.get('http://localhost:5000/');
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+const getBookByISBN = async (isbn) => {
+    try {
+        const response = await axios.get('http://localhost:5000/isbn/' + isbn);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+const getBookByAuthor = async (author) => {
+    try {
+        const response = await axios.get('http://localhost:5000/author/' + author);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+const getBookByTitle = async (title) => {
+    try {
+        const response = await axios.get('http://localhost:5000/title/' + title);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 module.exports.general = public_users;
